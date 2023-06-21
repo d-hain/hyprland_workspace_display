@@ -1,5 +1,8 @@
 # Hyprland Workspace Display
 
+Multiple monitors and special workspaces are not and WILL NOT be supported.
+Except someone wants to make a pull request to add that functionality.
+
 Config file in `${XDG_CONFIG_HOME}/hypr/hyprspacedp/config.toml`.
 
 Any alpha/opacity color value will be ignored.
