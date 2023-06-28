@@ -199,8 +199,6 @@ fn print_symbols(workspace_symbols: &Vec<char>, args: &Args) {
             .iter()
             .for_each(|symbol| print!("{} ", symbol));
     }
-
-    println!();
 }
 
 fn get_eww_widget(
