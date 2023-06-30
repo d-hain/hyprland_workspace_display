@@ -1,7 +1,7 @@
 use anyhow::Context;
 use clap::Parser;
 use hyprland_workspace_display::workspace::Workspace;
-use std::process::Command;
+use std::{process::Command, time::SystemTime};
 
 mod symbols;
 
@@ -25,10 +25,6 @@ struct Args {
     /// Symbol for a workspace that is currently active.
     #[arg(long, required = true, value_name = "SYMBOL")]
     active_symbol: char,
-
-    /// Runs continuously and prints on change in workspaces.
-    #[arg(short = 'p', long)]
-    polling: bool,
 
     /// Return eww widgets (buttons) instead of only symbols for each workspace.
     #[arg(long)]
@@ -133,8 +129,8 @@ fn main() {
     let args = Args::parse();
 
     let workspaces = get_workspaces().expect("got no workspaces");
-    let mut active_workspace = get_active_workspace().expect("got no active workspace");
-    let mut symbols = symbols::get_workspace_symbols(
+    let active_workspace = get_active_workspace().expect("got no active workspace");
+    let symbols = symbols::get_workspace_symbols(
         &workspaces,
         args.workspace_amount,
         args.active_symbol,
@@ -143,32 +139,7 @@ fn main() {
         &active_workspace,
     );
 
-    if args.polling {
-        print_symbols(&symbols, &args);
-
-        loop {
-            let workspaces_polling = get_workspaces().expect("got no workspaces");
-            let prev_active_workspace = active_workspace.clone();
-            active_workspace = get_active_workspace().expect("got no active workspace");
-
-            if workspaces_polling.len() != workspaces.len()
-                || prev_active_workspace.id != active_workspace.id
-            {
-                symbols = symbols::get_workspace_symbols(
-                    &workspaces_polling,
-                    args.workspace_amount,
-                    args.active_symbol,
-                    args.full_symbol,
-                    args.empty_symbol,
-                    &active_workspace,
-                );
-
-                print_symbols(&symbols, &args);
-            }
-        }
-    } else {
-        print_symbols(&symbols, &args);
-    }
+    print_symbols(&symbols, &args);
 }
 
 /// Prints the symbols or the eww widgets for all workspaces.
@@ -198,6 +169,7 @@ fn print_symbols(workspace_symbols: &Vec<char>, args: &Args) {
         workspace_symbols
             .iter()
             .for_each(|symbol| print!("{} ", symbol));
+        println!();
     }
 }
 

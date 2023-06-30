@@ -14,7 +14,7 @@ pub fn get_workspace_symbols(
         if let Some(workspace) = get_workspace_by_id(idx, &workspaces) {
             if workspace.id == active_workspace.id {
                 symbols.push(active_workspace_symbol);
-            } else if workspace.id == idx {
+            } else {
                 symbols.push(full_workspace_symbol);
             }
         } else {
