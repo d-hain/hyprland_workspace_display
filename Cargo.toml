@@ -1,5 +1,9 @@
 [package]
 name = "hyprland_workspace_display"
+description = "Command line utility to display hyprland workspaces."
+homepage = "https://github.com/d-hain/hyprland_workspace_display"
+repository = "https://github.com/d-hain/hyprland_workspace_display"
+license-file = "LICENSE"
 version = "0.2.0"
 edition = "2021"
 publish = true
