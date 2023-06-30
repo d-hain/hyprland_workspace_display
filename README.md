@@ -1,6 +1,9 @@
 # Hyprland Workspace Display
 # hyprspacedp
 
+[![crates.io](https://img.shields.io/crates/v/hyprland_workspace_display.svg)](https://crates.io/crates/hyprland_workspace_display)
+[![docs.rs](https://docs.rs/hyprland_workspace_display/badge.svg)](https://docs.rs/hyprland_workspace_display)
+
 This is a utility for getting symbols for [Hyprland](https://github.com/hyprwm/Hyprland) workspaces. \
 Getting [eww](https://github.com/elkowar/eww) widgets (buttons in a box) for the workspaces is also possible and rather customizable. \
 Unicode icons are also supported.

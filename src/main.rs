@@ -1,7 +1,7 @@
 use anyhow::Context;
 use clap::Parser;
 use hyprland_workspace_display::workspace::Workspace;
-use std::{process::Command, time::SystemTime};
+use std::process::Command;
 
 mod symbols;
 

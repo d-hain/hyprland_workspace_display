@@ -2,7 +2,7 @@
 name = "hyprland_workspace_display"
 version = "0.2.0"
 edition = "2021"
-publish = false
+publish = true
 
 [[bin]]
 name = "hyprspacedp"
