@@ -15,6 +15,26 @@ Pull requests are also always welcome.
 Multiple monitors and special workspaces are not and WILL NOT be supported. \
 Except someone wants to make a pull request to add that functionality.
 
+## My setup (without any css) using the `--eww-widgets` option
+
+![My Setup](/my-setup.png)
+
+```yuck
+(defpoll workspaces_yuck 
+  :interval "100ms"
+  `hyprspacedp \
+      -n 10 \
+      --full-symbol O \
+      --empty-symbol o \
+      --active-symbol X \
+      --eww-widgets \
+      --eww-class-box box-workspaces \
+      --eww-halign center \
+      --eww-orientation vertical \
+      --eww-class-button button-workspace-{NR} \
+      --eww-onclick 'hyprctl dispatch workspace {NR}'`)
+```
+
 ## Examples
 
 `--help` is your best friend.
