@@ -5,7 +5,7 @@ pub fn get_workspace_symbols(
     workspace_amount: u8,
     active_workspace_symbol: char,
     full_workspace_symbol: char,
-    empty_workspace_symbol: char,
+    empty_workspace_symbol: Option<char>,
     active_workspace: &Workspace,
 ) -> Vec<char> {
     let mut symbols = Vec::new();
@@ -17,8 +17,8 @@ pub fn get_workspace_symbols(
             } else {
                 symbols.push(full_workspace_symbol);
             }
-        } else {
-            symbols.push(empty_workspace_symbol);
+        } else if let Some(empty_symbol) = empty_workspace_symbol {
+            symbols.push(empty_symbol);
         }
     }
 
