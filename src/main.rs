@@ -15,8 +15,8 @@ struct Args {
     workspace_amount: u8,
 
     /// Symbol for a workspace that does not contain any windows.
-    #[arg(long, required = true, value_name = "SYMBOL")]
-    empty_symbol: char,
+    #[arg(long, required = false, value_name = "SYMBOL")]
+    empty_symbol: Option<char>,
 
     /// Symbol for a workspace that contains one or more windows.
     #[arg(long, required = true, value_name = "SYMBOL")]
