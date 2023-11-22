@@ -7,10 +7,11 @@ This is a utility for getting symbols for [Hyprland](https://github.com/hyprwm/H
 Getting [eww](https://github.com/elkowar/eww) widgets (buttons in a box) for the workspaces is also possible and rather customizable. \
 Unicode icons are also supported.
 
-If any features are missing or there are any bugs please open an issue. \
-Pull requests are also always welcome. 
+# Info
 
-## Info
+## ⚠️ I am not using Hyprland anymore so there will most likely no more updates ⚠️
+But still if any features are missing or there are any bugs please fell free to just open an issue. \
+Pull requests are also always welcome.
 
 Multiple monitors and special workspaces are not and WILL NOT be supported. \
 Except someone wants to make a pull request to add that functionality.
