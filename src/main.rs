@@ -131,13 +131,13 @@ fn main() {
     let workspaces = get_workspaces().expect("got no workspaces");
     let active_workspace = get_active_workspace().expect("got no active workspace");
     let symbols = symbols::get_workspace_symbols(
-        &workspaces,
-        args.workspace_amount,
-        args.active_symbol,
-        args.full_symbol,
-        args.empty_symbol,
-        &active_workspace,
-    );
+    &workspaces,
+    args.workspace_amount,
+    args.active_symbol,
+    args.full_symbol,
+    args.empty_symbol,
+    &active_workspace,
+);
 
     print_symbols(&symbols, &args);
 }
@@ -148,7 +148,7 @@ fn main() {
 ///
 /// - `workspace_symbols` - the current symbols for all workspaces.
 /// - `eww_widgets` - wheter to print eww widgets or normal symbols.
-fn print_symbols(workspace_symbols: &Vec<char>, args: &Args) {
+fn print_symbols(workspace_symbols: &Vec<(char, u8)>, args: &Args) {
     if args.eww_widgets {
         println!(
             "{}",
@@ -168,13 +168,13 @@ fn print_symbols(workspace_symbols: &Vec<char>, args: &Args) {
     } else {
         workspace_symbols
             .iter()
-            .for_each(|symbol| print!("{} ", symbol));
+            .for_each(|(symbol, _)| print!("{} ", symbol));
         println!();
     }
 }
 
 fn get_eww_widget(
-    workspace_symbols: &Vec<char>,
+    workspace_symbols: &Vec<(char, u8)>,
     eww_class_box: &Option<String>,
     eww_valign: &Option<String>,
     eww_halign: &Option<String>,
@@ -214,24 +214,23 @@ fn get_eww_widget(
     eww_widget = push_string_property(eww_widget.clone(), "orientation", eww_orientation, None);
 
     // Buttons
-    for (mut idx, symbol) in workspace_symbols.iter().enumerate() {
-        idx += 1;
-
+    for (symbol, nr) in workspace_symbols {
+        let nr_usize = *nr as usize;
         eww_widget.push_str("(button ");
 
-        eww_widget = push_string_property(eww_widget.clone(), "class", eww_class_button, Some(idx));
-        eww_widget = push_string_property(eww_widget.clone(), "onclick", eww_onclick, Some(idx));
+        eww_widget = push_string_property(eww_widget.clone(), "class", eww_class_button, Some(nr_usize));
+        eww_widget = push_string_property(eww_widget.clone(), "onclick", eww_onclick, Some(nr_usize));
         eww_widget = push_string_property(
             eww_widget.clone(),
             "onmiddleclick",
             eww_onmiddleclick,
-            Some(idx),
+            Some(nr_usize),
         );
         eww_widget = push_string_property(
             eww_widget.clone(),
             "onrightclick",
             eww_onrightclick,
-            Some(idx),
+            Some(nr_usize),
         );
 
         eww_widget.push_str(&format!("'{}')", symbol));
