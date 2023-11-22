@@ -17,8 +17,7 @@ pub fn get_workspace_symbols(
             } else {
                 symbols.push((full_workspace_symbol, idx));
             }
-        } else {
-            if let Some(symbol) = empty_workspace_symbol {
+        } else if let Some(symbol) = empty_workspace_symbol {
                 symbols.push((symbol, idx));
             }
         }
